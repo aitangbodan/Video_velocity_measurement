@@ -1,0 +1,45 @@
+device: 0 # -1 if using default device selection stratege
+mode: 'tracking' # 'tracking','detect','segment'
+tracker: 'bytetracking' # useful if mode='tracking'
+
+detect:
+  model_path: './model/engine_file/best_dynamic_batch.engine'
+  input_name: 'images'
+  output_name: 'output'
+  cates: [ 'car', 'suv', 'truck','light truck', 'van','chemicals vehicle', 'bus' ]
+  half: 1
+  width: 640
+  height: 640
+
+segment:
+  model_path: './model/engine_file/STDCNet1446_model_maxmIOU75.480.FP16.engine'
+  input_name: 'inputs'
+  output_name: 'outputs'
+  cates: [ 'bg','water' ]
+  half: 1
+  width: 640
+  height: 480
+
+reid:
+  model_path: "./model/engine_file/new_ReID.PF16.batch256.trtmodel" #'./model/engine_file/reid_fp32_128_norm.engine' #"/dataset/lijin/new_ReID.PF16.batch256.trtmodel" #'./model/engine_file/reid_fp32_128_norm.engine' #"/dataset/lijin/256ReID.PF16.batch256.trtmodel" # #
+  input_name: 'input'
+  output_name: 'output'
+  half: False
+  width: 64
+  height: 64
+deepsort_tracking:
+  MAX_DIST: 0.2 #
+  MIN_CONFIDENCE: 0.3 #
+  MAX_IOU_DISTANCE: 0.7 #
+  MAX_AGE: 30 #
+  N_INIT: 3 #
+  NN_BUDGET: 50
+
+bytetracking:
+  track_thresh: 0.4
+  track_buffer: 30
+  match_thresh: 0.8
+  aspect_ratio_thresh: 1.6
+  min_box_area: 6
+  mot20: False
+

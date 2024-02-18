@@ -1,18 +1,95 @@
-# water-flow-dataset
-This data contains 5 water flow videos, 10 continuous frames of velocity measurement regions and corresponding velocity labels.
-https://aistudio.baidu.com/aistudio/datasetdetail/196884
+# Video velocity measurement
 
-samples:
+The real-time video analysis algorithm module based on tensorrt dynamic batch inference accesses the upper layer service at the model inference output end. 
+Business involved:***Video velocity measurement***
 
-![img_50_0_0](https://user-images.githubusercontent.com/54161139/223627885-3e81c88b-14e2-4777-ae7b-be2cad63159b.jpg)
 
-label: 0.713m/s
+[TOC]
 
-![img_50_1_0](https://user-images.githubusercontent.com/54161139/223628877-32b63ebd-2a5f-4352-b10e-43b9f2310b99.jpg)
+### main module description
 
-label: 0.652m/s
+**model**
 
-![img_51_0_0](https://user-images.githubusercontent.com/54161139/223628277-96b0046c-b4a3-487a-bc20-44693fa6fe94.jpg)
+The algorithm serves the underlying algorithm implementation : tracking algorithm, optical flow algorithm. 
 
-label: 0.374m/s
+**mutual**
+
+Interactive interface with the back-end : mainly related to grpc communication and shared memory read and write.
+
+**parallel**
+
+Parallel Task Management Module : Tasks that need to be processed in parallel can be placed here and currently include tracking tasks.
+
+**application**
+
+Business application module : including the underlying algorithm scheduling, business configuration, business table, etc.
+
+
+
+### configuration
+
+#### **Algorithm configuration**
+
+Modify the underlying algorithm configuration, see ***“model/config/config.yaml”***
+
+De:
+  model_path: './model/engine_file/model.432FP32.engine'
+  input_name: 'inputs'
+  output_name: 'outputs'
+  cates: [ 'bg','water' ]
+  half: False
+
+
+
+#### **Business configuration**
+
+pass in a json object. The configuration file format is detailed in ***"./application/config/water_flow_velocity_config.json*"**
+
+```
+[
+  {
+    "camera": "001",
+    "rois": 2,
+    "rois_shape": [[432, 131], [432, 131]],
+    "left_top": [[0, 0], [0, 0]],
+    "distance": 12.3,
+    "change": []
+  },
+  {
+    "camera": "002",
+    "rois": 1,
+    "rois_shape": [[432, 131]],
+    "left_top": [[0, 0]],
+    "distance": 11.0,
+    "change": [0]
+  }]
+```
+
+### Run
+
+#### **Local testing**
+
+Enter the project root directory, business testing local test. 
+
+```
+python module_test/manager_test.py
+```
+
+#### **back-end joint debugging**
+
+ 	Start the grpc server and run python grpc/smserver.py
+
+​	
+
+
+
+
+
+
+
+
+
+
+
+
 

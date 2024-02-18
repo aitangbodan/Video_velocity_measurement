@@ -1,0 +1,15 @@
+[
+  {
+    "camera": "001",
+    "rois": 2,
+    "rois_shape": [[432, 131], [432, 131]],
+    "left_top": [[0, 0], [0, 0]],
+    "distance": 12.3
+  },
+  {
+    "camera": "002",
+    "rois": 1,
+    "rois_shape": [[432, 131]],
+    "left_top": [[0, 0]],
+    "distance": 11.0
+  }]

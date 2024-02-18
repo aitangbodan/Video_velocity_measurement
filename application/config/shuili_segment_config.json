@@ -1,0 +1,42 @@
+[
+  {
+    "id": 0,
+    "camera": "001",
+    "location": "xxx",
+    "resolution":[640,480],
+    "rois": [
+      {
+        "id": 1,
+        "vertexes": [[107, 388], [187, 356]],
+        "type": "line",
+        "desc": "死水位",
+        "level": 1,
+        "algs": [4]
+      },
+      {
+        "id": 2,
+        "vertexes": [[106, 354], [198, 327]],
+        "type": "line",
+        "desc": "保证水位",
+        "level": 2,
+        "algs": [4]
+      },
+      {
+        "id": 3,
+        "vertexes": [[110, 327], [182, 317]],
+        "type": "line",
+        "desc": "警戒水位",
+        "level":3,
+        "algs": [4]
+      },
+      {
+        "id": 4,
+        "vertexes": [[89, 309], [169, 292]],
+        "type": "line",
+        "desc": "汛限水位",
+        "level": 4,
+        "algs": [4]
+      }
+    ]
+  }
+]
